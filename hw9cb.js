@@ -1,4 +1,3 @@
-console.log("go")
 function alarmClock() {
     let a=Math.round(Math.random());
     return a !== 0;
@@ -14,7 +13,7 @@ function wakeUp(a,i=0) {
         setTimeout(()=>{
 
             if(a){
-                resolve(s="встаю встаю");
+                resolve(console.log("встаю встаю"));
 
             }
             else if(i<=2){
@@ -30,7 +29,7 @@ function wakeUp(a,i=0) {
                 resolve(badVariant())
             }
 
-            else if(i>4){reject(s="проспав,буду далі спати,не будити")}
+            else if(i>4){reject("проспав,буду далі спати,не будити")}
 
 
 
@@ -45,7 +44,7 @@ function hygieneProcedures() {
     return new Promise((resolve) => {
             setTimeout(()=> {
 
-                resolve(s="помився,побрився....")
+                resolve(console.log("помився,побрився...."))
 
 
             },2000)
@@ -55,7 +54,7 @@ function hygieneProcedures() {
 function morningWorkOut(){
     return new Promise((resolve) => {
         setTimeout(()=>{
-            resolve("зарядка,раз два три чотири...");
+            resolve(console.log("зарядка,раз два три чотири..."));
 
         },2000)
     })
@@ -67,7 +66,7 @@ function getEat() {
     return new Promise((resolve) => {
         setTimeout(()=>{
             if(j<=1) {
-                resolve("ням ням...");
+                resolve(console.log("ням ням..."));
 
             }
             else{console.log("жру наніч ням ням...");
@@ -79,7 +78,7 @@ function getEat() {
 function learn() {
     return new Promise((resolve) => {
         setTimeout(()=>{
-            resolve("promice - це...,вчуся");
+            resolve(console.log("promice - це...,вчуся"));
 
         },3000)
     })
@@ -87,7 +86,7 @@ function learn() {
 function badVariant() {
     return new Promise((resolve) => {
         setTimeout(()=>{
-            resolve("зуби не почистив,зарядку не зробив,не поїв, сука, довго спав");
+            resolve(console.log("зуби не почистив,зарядку не зробив,не поїв, сука, довго спав"));
 
         },2000)
     })
@@ -107,7 +106,7 @@ function getToWork() {
 function work() {
     return new Promise((resolve) => {
         setTimeout(()=>{
-            resolve(s="працюю");
+            resolve(console.log("працюю"));
 
         },5000)
     })
@@ -115,7 +114,7 @@ function work() {
 function getHome() {
     return new Promise((resolve) => {
         setTimeout(()=>{
-            resolve(s="їду до дому");
+            resolve(console.log("їду до дому"));
 
         },2000)
     })
@@ -123,7 +122,7 @@ function getHome() {
 function doHomeWork() {
     return new Promise((resolve) => {
         setTimeout(()=>{
-            resolve(s="роблю домашку");
+            resolve(console.log("роблю домашку"));
 
         },3000)
     })
@@ -135,14 +134,14 @@ function sleep() {
 
             if(!alarmClock()) {
 
-                reject(s="сплю")
+                reject("сплю")
             }
             else {console.log("не можу заснути,хочу їсти");
                 i++;
                 if(i<3){
                     return getEat()
                 }
-                else {resolve(s='обожрался сплю')}
+                else {resolve(console.log('обожрался сплю'))}
             }
 
         },3000)
@@ -153,16 +152,18 @@ function sleep() {
 
 
 wakeUp(alarmClock())
-    .then ((s)=>{console.log(s);return hygieneProcedures()})
-    .then((s)=>{ console.log(s);return morningWorkOut()})
-    .then((s)=>{console.log(s);return getEat()})
-    .then((s)=>{console.log(s);return learn()})
-    .then((s)=>{console.log(s);return getToWork()})
-    .then((s)=>{console.log(s);return work()})
-    .then((s)=>{console.log(s);return getHome()})
-    .then((s)=>{console.log(s);return doHomeWork()})
-    .then((s)=>{console.log(s);return sleep()})
-    .then((s)=>{console.log(s)})
+
+
+
+    .then (()=>{return hygieneProcedures()})
+    .then(()=>{ return morningWorkOut()})
+    .then(()=>{return getEat()})
+    .then(()=>{return learn()})
+    .then(()=>{return getToWork()})
+    .then(()=>{return work()})
+    .then(()=>{return getHome()})
+    .then(()=>{return doHomeWork()})
+    .then(()=>{return sleep()})
     .catch(reason => console.log(reason));
 
 
@@ -174,3 +175,5 @@ wakeUp(alarmClock())
 // .then(()=>{return doHomeWork()})
 //          .then(()=>{return sleep()})
 // .catch(reason => console.log(reason));
+
+
